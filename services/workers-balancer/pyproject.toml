@@ -8,6 +8,9 @@ packages = [{include = "workers_balancer"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+fastapi = "^0.92.0"
+uvicorn = "^0.20.0"
+sqlalchemy = "^2.0.4"
 
 
 [build-system]
