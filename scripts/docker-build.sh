@@ -1,1 +1,1 @@
-docker build -f ./services/reverse-proxy/Dockerfile -t tgshop_reverse-proxy
+docker build -f ./services/reverse-proxy/Dockerfile -t tgshop_reverse-proxy .

@@ -1,3 +1,3 @@
 FROM nginx:stable
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./services/reverse-proxy/nginx.conf /etc/nginx/nginx.conf
