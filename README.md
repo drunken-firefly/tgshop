@@ -26,7 +26,7 @@
     Панель состоит из нескольких сервисов
 
     - Data Stack
-      - DataBase:PostgreSQL - база данных
+      - DataBase:MariaDB - база данных
     - Backend Stack
       - Python:FastApi - REST API для доступа к базе
       - Telegram:Pyrogram:[]* - python фреймворк для работы с telegram

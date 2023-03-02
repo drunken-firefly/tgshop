@@ -1,0 +1,4 @@
+[mysqld]
+
+# Куда писать лог ошибок
+log_error = /var/log/mysql/error.log
