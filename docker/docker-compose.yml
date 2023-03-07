@@ -2,6 +2,19 @@ version: "3.8"
 
 services:
 
+  backend:
+    image: tgshop/backend
+    container_name: tgshop_backend
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - type: volume
+        source: backend-workdir
+        target: /app
+        volume:
+          nocopy: false
+
   database:
     image: tgshop/database
     container_name: tgshop_database
@@ -9,7 +22,7 @@ services:
     ports:
       - 3306:3306
     environment:
-      - MARIADB_ROOT_PASSWORD=pass
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
     volumes:
       - type: volume
         source: mariadb-conf
@@ -47,6 +60,15 @@ services:
 
 
 volumes:
+
+  # BackEnd
+  # - Рабочая папка
+  backend-workdir:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./backend/.dockervol/backend-workdir
 
   # NGiNX
   # - Конфигурация

@@ -2,5 +2,4 @@ poetry.lock
 
 .vscode
 
-.dockervol
-nginx-logs/
+.volumes
