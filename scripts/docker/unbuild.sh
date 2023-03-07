@@ -14,4 +14,4 @@ source ./scripts/docker/unbuild/images.sh
 source ./scripts/docker/unbuild/volumes.sh
 
 # Удаляем папки для томов
-source ./scripts/docker/unbuild/sources.sh
+source ./scripts/docker/unbuild/folders.sh

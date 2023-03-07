@@ -5,34 +5,43 @@ services:
   backend:
     image: tgshop/backend
     container_name: tgshop_backend
+    restart: always
     networks:
       - tgshop
 
   database:
     image: tgshop/database
     container_name: tgshop_database
+    restart: always
     networks:
       - tgshop
+    env_file:
+      - ./envs/database
+    ports:
+      - 3306:3306
 
   reverse-proxy:
     image: tgshop/reverse-proxy
     container_name: tgshop_reverse-proxy
+    restart: always
     networks:
       - tgshop
+    ports:
+      - 80:80
 
   worker:
     image: tgshop/worker
     container_name: tgshop_worker
+    restart: always
     networks:
       - tgshop
 
   workers-balancer:
     image: tgshop/workers-balancer
     container_name: tgshop_workers-balancer
+    restart: always
     networks:
       - tgshop
-
-volumes:
 
 networks:
   tgshop:
