@@ -43,6 +43,41 @@ services:
     networks:
       - tgshop
 
+volumes:
+  # database:mariadb
+  mariadb-conf:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./.volumes/database/mariadb-conf
+  mariadb-logs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./.volumes/database/mariadb-logs
+  mariadb-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./.volumes/database/mariadb-data
+
+  # reverse-proxy:nginx
+  nginx-conf:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./.volumes/reverse-proxy/nginx-conf
+  nginx-logs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./.volumes/reverse-proxy/nginx-logs
+
 networks:
   tgshop:
     name: tgshop
