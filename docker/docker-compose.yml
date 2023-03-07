@@ -5,107 +5,35 @@ services:
   backend:
     image: tgshop/backend
     container_name: tgshop_backend
-    restart: always
-    ports:
-      - 8000:8000
-    volumes:
-      - type: volume
-        source: backend-workdir
-        target: /app
-        volume:
-          nocopy: false
+    networks:
+      - tgshop
 
   database:
     image: tgshop/database
     container_name: tgshop_database
-    restart: always
-    ports:
-      - 3306:3306
-    environment:
-      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
-    volumes:
-      - type: volume
-        source: mariadb-conf
-        target: /etc/mysql
-        volume:
-          nocopy: false
-      - type: volume
-        source: mariadb-logs
-        target: /var/log/mysql
-        volume:
-          nocopy: true      
-      - type: volume
-        source: mariadb-data
-        target: /var/lib/mysql
-        volume:
-          nocopy: true
+    networks:
+      - tgshop
 
   reverse-proxy:
     image: tgshop/reverse-proxy
     container_name: tgshop_reverse-proxy
-    restart: always
-    ports:
-      - 80:80
-    volumes:
-      - type: volume
-        source: nginx-conf
-        target: /etc/nginx
-        volume:
-          nocopy: false
-      - type: volume
-        source: nginx-logs
-        target: /var/log/nginx
-        volume:
-          nocopy: true
+    networks:
+      - tgshop
 
+  worker:
+    image: tgshop/worker
+    container_name: tgshop_worker
+    networks:
+      - tgshop
+
+  workers-balancer:
+    image: tgshop/workers-balancer
+    container_name: tgshop_workers-balancer
+    networks:
+      - tgshop
 
 volumes:
 
-  # BackEnd
-  # - Рабочая папка
-  backend-workdir:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./backend/.dockervol/backend-workdir
-
-  # NGiNX
-  # - Конфигурация
-  nginx-conf:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./reverse-proxy/.dockervol/nginx-conf
-  # - Логи
-  nginx-logs:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./reverse-proxy/.dockervol/nginx-logs
-
-  # MariaDB
-  # - Конфигурация
-  mariadb-conf:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./database/.dockervol/mariadb-conf
-  # - Логи
-  mariadb-logs:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./database/.dockervol/mariadb-logs
-  # - Данные
-  mariadb-data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./database/.dockervol/mariadb-data
-
+networks:
+  tgshop:
+    name: tgshop

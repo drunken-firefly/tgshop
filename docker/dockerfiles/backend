@@ -1,15 +1,1 @@
 FROM python:3.11.2
-
-RUN pip install poetry
-RUN mkdir /app
-
-WORKDIR /app
-
-COPY ./services/backend/pyproject.toml pyproject.toml
-RUN poetry install
-
-COPY ./services/backend/backend backend
-
-COPY ./services/backend/docker-entrypoint.sh docker-entrypoint.sh
-
-ENTRYPOINT [ "/bin/sh", "docker-entrypoint.sh" ]
