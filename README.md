@@ -1,3 +1,7 @@
+# Архитектура
+
+![Арихитектура](https://raw.githubusercontent.com/drunken-firefly/tgshop/master/docs/imgs/services.png)
+
 # Файлы и каталоги
 
     - ./docker/ - все что связанно с docker
