@@ -8,9 +8,10 @@ COPY ./services/migration/pyproject.toml /app/pyproject.toml
 RUN poetry install
 
 COPY ./services/migration/alembic.ini /app/alembic.ini
-COPY ./services/migration/alembic /app/alembic/
+COPY ./services/migration/alembic /app/alembic
+RUN mkdir /app/alembic/versions
 
-COPY ./services/database/schema/sqlalchemy /app/schema/
+COPY ./services/database/schema/sqlalchemy /app/schema
 
 COPY ./services/migration/init.py /app/init.py
 COPY ./docker/entrypoints/migration.sh /app/docker-entrypoint.sh
