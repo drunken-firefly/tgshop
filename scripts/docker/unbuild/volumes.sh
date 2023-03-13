@@ -1,18 +1,23 @@
 #!/bin/bash
 # Удаляем тома
 
-# - tgshop/database - база данных
+# - tgshop/database
 # -- MariaDB
 # --- Конфигурация
-sudo docker volume rm tgshop_mariadb-conf
+sudo docker volume rm tgshop_database-conf
 # --- Логи
-sudo docker volume rm tgshop_mariadb-logs
+sudo docker volume rm tgshop_database-logs
 # --- Данные
-sudo docker volume rm tgshop_mariadb-data
+sudo docker volume rm tgshop_database-data
 
-# - tgshop/reverse-proxy - nginx
+# - tgshop/migration
+# -- alembic
+# --- Миграции
+sudo docker volume rm tgshop_migration-data
+
+# - tgshop/proxy
 # -- NGINX
 # --- Конфигурация
-sudo docker volume rm tgshop_nginx-conf
+sudo docker volume rm tgshop_proxy-conf
 # --- Логи
-sudo docker volume rm tgshop_nginx-logs
+sudo docker volume rm tgshop_proxy-logs

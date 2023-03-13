@@ -1,2 +1,11 @@
+# Connection Params
+DB_CONNECTOR = "mariadb+mariadbconnector"
+DB_USER = "root"
+DB_PASS = "pass"
+DB_HOST = "database"
+DB_PORT = "3306"
+DB_NAME = "tgshop"
+DB_MIGRATE = "false"
+
 # MariaDB
-MARIADB_ROOT_PASSWORD = "pass"
+MARIADB_ROOT_PASSWORD = ${DB_PASS}

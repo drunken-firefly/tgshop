@@ -1,13 +1,18 @@
 #!/bin/bash
 # Cобираем образы
 
-# - tgshop/backend - бекэнд
+# - tgshop/poetry
+sudo docker build -f ./docker/dockerfiles/libs/poetry -t tgshop/poetry .
+
+# - tgshop/backend
 sudo docker build -f ./docker/dockerfiles/backend -t tgshop/backend .
-# - tgshop/database - база данных
+# - tgshop/balancer
+sudo docker build -f ./docker/dockerfiles/balancer -t tgshop/balancer .
+# - tgshop/database
 sudo docker build -f ./docker/dockerfiles/database -t tgshop/database .
-# - tgshop/reverse-proxy - nginx
-sudo docker build -f ./docker/dockerfiles/reverse-proxy -t tgshop/reverse-proxy .
-# - tgshop/worker - работник
+# - tgshop/migration
+sudo docker build -f ./docker/dockerfiles/migration -t tgshop/migration .
+# - tgshop/proxy
+sudo docker build -f ./docker/dockerfiles/proxy -t tgshop/proxy .
+# - tgshop/worker
 sudo docker build -f ./docker/dockerfiles/worker -t tgshop/worker .
-# - tgshop/workers-balancer - балансировщик работников
-sudo docker build -f ./docker/dockerfiles/workers-balancer -t tgshop/workers-balancer .

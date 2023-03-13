@@ -3,16 +3,30 @@ version: "3.8"
 
 services:
 
+  backend:
+    image: tgshop/backend
+    container_name: tgshop_backend
+    restart: always
+    networks:
+      - tgshop
+    depends_on:
+      - migration
+      - database
+      - proxy
+
+  balancer:
+    image: tgshop/balancer
+    container_name: tgshop_balancer
+    restart: always
+    networks:
+      - tgshop
+    depends_on:
+      - backend
+
   database:
     image: tgshop/database
     container_name: tgshop_database
     restart: always
-    healthcheck:
-      test: [ "CMD", "/bin/bash", "/healthcheck.sh" ]
-      interval: 5s
-      timeout: 5s
-      retries: 30
-      start_period: 30s
     networks:
       - tgshop
     env_file:
@@ -39,19 +53,40 @@ services:
   migration:
     image: tgshop/migration
     container_name: tgshop_migration
-    env_file:
-      - ./envs/database
     networks:
       - tgshop
     depends_on:
-      database:
-        condition: service_healthy
+      - database
+
+  proxy:
+    image: tgshop/proxy
+    container_name: tgshop_proxy
+    restart: always
+    networks:
+      - tgshop
+    ports:
+      - 80:80
     volumes:
       - type: volume
-        source: migration-data
-        target: /app/alembic/versions
+        source: proxy-conf
+        target: /etc/nginx
+        volume:
+          nocopy: false
+      - type: volume
+        source: proxy-logs
+        target: /var/log/nginx
         volume:
           nocopy: true
+
+  worker:
+    image: tgshop/worker
+    container_name: tgshop_worker
+    restart: always
+    networks:
+      - tgshop
+    depends_on:
+      - balancer
+
 
 volumes:
 
@@ -75,13 +110,20 @@ volumes:
       o: bind
       device: ./.volumes/database/data
 
-  # migration:alembic
-  migration-data:
+  # proxy:nginx
+  proxy-conf:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ./.volumes/migration/data
+      device: ./.volumes/proxy/conf
+  proxy-logs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./.volumes/proxy/logs
+
 
 networks:
 

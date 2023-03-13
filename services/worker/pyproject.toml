@@ -6,12 +6,7 @@ authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
-fastapi = "^0.92.0"
-uvicorn = "^0.20.0"
-sqlalchemy = "^2.0.4"
-pyrogram = "^2.0.100"
-tgcrypto = "^1.2.5"
+python = "3.11.2"
 
 
 [build-system]

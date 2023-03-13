@@ -1,23 +1,29 @@
 #!/bin/bash
 # Создаем папки для томов
 
-# - tgshop/database - база данных
+# - tgshop/database
 # -- MariaDB
 # --- Конфигурация
-sudo mkdir -p ./docker/.volumes/database/mariadb-conf
-sudo chown -R 999:docker ./docker/.volumes/database/mariadb-conf
+sudo mkdir -p ./docker/.volumes/database/conf
+sudo chown -R 999:docker ./docker/.volumes/database/conf
 # --- Логи
-sudo mkdir -p ./docker/.volumes/database/mariadb-logs
-sudo chown -R 999:docker ./docker/.volumes/database/mariadb-logs
+sudo mkdir -p ./docker/.volumes/database/logs
+sudo chown -R 999:docker ./docker/.volumes/database/logs
 # --- Данные
-sudo mkdir -p ./docker/.volumes/database/mariadb-data
-sudo chown -R 999:docker ./docker/.volumes/database/mariadb-data
+sudo mkdir -p ./docker/.volumes/database/data
+sudo chown -R 999:docker ./docker/.volumes/database/data
 
-# - tgshop/reverse-proxy - nginx
+# - tgshop/migration
+# -- alembic
+# --- Миграции
+sudo mkdir -p ./docker/.volumes/migration/data
+sudo chown -R 999:docker ./docker/.volumes/migration/data
+
+# - tgshop/proxy
 # -- NGINX
 # --- Конфигурация
-sudo mkdir -p ./docker/.volumes/reverse-proxy/nginx-conf
-sudo chown -R 999:docker ./docker/.volumes/reverse-proxy/nginx-conf
+sudo mkdir -p ./docker/.volumes/proxy/conf
+sudo chown -R 999:docker ./docker/.volumes/proxy/conf
 # --- Логи
-sudo mkdir -p ./docker/.volumes/reverse-proxy/nginx-logs
-sudo chown -R 999:docker ./docker/.volumes/reverse-proxy/nginx-logs
+sudo mkdir -p ./docker/.volumes/proxy/logs
+sudo chown -R 999:docker ./docker/.volumes/proxy/logs

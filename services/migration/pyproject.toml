@@ -1,16 +1,16 @@
 [tool.poetry]
-name = "workers-balancer"
+name = "migration"
 version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"
-packages = [{include = "workers_balancer"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-fastapi = "^0.92.0"
-uvicorn = "^0.20.0"
-sqlalchemy = "^2.0.4"
+mariadb = "^1.1.6"
+sqlalchemy = "^2.0.5.post1"
+sqlalchemy-utils = "^0.40.0"
+alembic = "^1.10.2"
 
 
 [build-system]

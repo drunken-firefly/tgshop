@@ -1,0 +1,20 @@
+FROM tgshop/poetry
+
+RUN curl -LsS https://r.mariadb.com/downloads/mariadb_repo_setup | bash 
+RUN apt update -y
+RUN apt install -y libmariadb3 libmariadb-dev
+
+COPY ./services/migration/pyproject.toml /app/pyproject.toml
+RUN poetry install
+
+COPY ./services/migration/alembic.ini /app/alembic.ini
+COPY ./services/migration/alembic /app/alembic/
+
+COPY ./services/database/schema/sqlalchemy /app/schema/
+
+COPY ./services/migration/init.py /app/init.py
+COPY ./docker/entrypoints/migration.sh /app/docker-entrypoint.sh
+
+VOLUME [ "/app/alembic/versions" ]
+
+ENTRYPOINT [ "/bin/bash", "docker-entrypoint.sh" ]

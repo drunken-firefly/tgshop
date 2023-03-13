@@ -2,7 +2,7 @@
 # Удаление образов, томов и папок для томов
 
 # Останавливаем docker-compose
-sudo docker compose -f ./docker/docker-compose.yml down
+sudo docker compose -f ./docker/docker-compose.yml --env-file ./docker/envs/general down
 
 # Удаляем контейнеры
 source ./scripts/docker/unbuild/containers.sh

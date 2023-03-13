@@ -1,1 +1,6 @@
 FROM mariadb:10.11
+
+COPY ./services/database/config /etc/mysql/conf.d
+COPY ./docker/healthchecks/database.sh /healthcheck.sh
+
+VOLUME [ "/etc/mysql", "/var/log/mysql", "/var/lib/mysql" ]

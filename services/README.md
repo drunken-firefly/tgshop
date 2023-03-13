@@ -1,7 +1,8 @@
 # Файлы и каталоги
 
     - ./backend/ - файлы контейнера backend
+    - ./balancer/ - файлы контейнера balancer
     - ./database/ - файлы контейнера database
-    - ./reverse-proxy/ - файлы контейнера reverse-proxy
+    - ./migration/ - файлы контейнера migration
+    - ./proxy/ - файлы контейнера proxy
     - ./worker/ - файлы контейнера worker
-    - ./workers-balancer/ - файлы контейнера workers-balancer

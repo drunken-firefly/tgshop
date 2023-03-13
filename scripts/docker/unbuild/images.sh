@@ -1,13 +1,18 @@
 #!/bin/bash
 # Удаляем образы
 
-# - tgshop/backend - бекэнд
+# - tgshop/poetry
+sudo docker rmi tgshop/poetry
+
+# - tgshop/backend
 sudo docker rmi tgshop/backend
-# - tgshop/database - база данных
+# - tgshop/balancer
+sudo docker rmi tgshop/balancer
+# - tgshop/database
 sudo docker rmi tgshop/database
-# - tgshop/reverse-proxy - nginx
-sudo docker rmi tgshop/reverse-proxy
-# - tgshop/worker - работник
+# - tgshop/migration
+sudo docker rmi tgshop/migration
+# - tgshop/proxy
+sudo docker rmi tgshop/proxy
+# - tgshop/worker
 sudo docker rmi tgshop/worker
-# - tgshop/workers-balancer - балансировщик работников
-sudo docker rmi tgshop/workers-balancer

@@ -1,18 +1,23 @@
 #!/bin/bash
 # Удаляем папки для томов
 
-# - tgshop/database - база данных
+# - tgshop/database
 # -- MariaDB
 # --- Конфигурация
-sudo rm -r ./docker/.volumes/database/mariadb-conf
+sudo rm -r ./docker/.volumes/database/conf
 # --- Логи
-sudo rm -r ./docker/.volumes/database/mariadb-logs
+sudo rm -r ./docker/.volumes/database/logs
 # --- Данные
-sudo rm -r ./docker/.volumes/database/mariadb-data
+sudo rm -r ./docker/.volumes/database/data
 
-# - tgshop/reverse-proxy - nginx
+# - tgshop/migration
+# -- alembic
+# --- Миграции
+sudo rm -r ./docker/.volumes/migration/data
+
+# - tgshop/reverse-proxy
 # -- NGINX
 # --- Конфигурация
-sudo rm -r ./docker/.volumes/reverse-proxy/nginx-conf
+sudo rm -r ./docker/.volumes/proxy/conf
 # --- Логи
-sudo rm -r ./docker/.volumes/reverse-proxy/nginx-logs
+sudo rm -r ./docker/.volumes/proxy/logs
